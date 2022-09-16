@@ -8,5 +8,13 @@ ES        Extra segment (Extra space)
 SS        Stack segment (Temporary storage of data and addresses)
 
 //General-purpose registers
-AX    BX    CX    DX    SP              BP    SI    DI
-ACC  BASE  COUNT  DATA  STACKPOINTER    
+AX   BX    CX     DX    SP             BP            SI              DI
+ACC  BASE  COUNT  DATA  STACKPOINTER   BASEPOINTER   SOURCE INDEX    DESTINATION INDEX
+
+AX, BX, CX, DX is split into 2 8bit registers (AH, AL & BH, BL and so on)
+
+//Instructions
+JMP     Jump to segment:address
+INC     Increase
+DEC     Decrease
+MOV     Move bytes from one place to another (Usually between registers)
