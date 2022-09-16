@@ -1,0 +1,12 @@
+Registers are 16 bits in size but require 20 bits to get an address. To get a location in memory you need to put the address into two seperate registers.
+One will contain the offset, and the other will contain the segment address (written segment:offset)
+
+//General segments
+CS        Code segment (Where code is read and written)
+DS        Data segment (Where values are stored, VARS)
+ES        Extra segment (Extra space)
+SS        Stack segment (Temporary storage of data and addresses)
+
+//General-purpose registers
+AX    BX    CX    DX    SP              BP    SI    DI
+ACC  BASE  COUNT  DATA  STACKPOINTER    
