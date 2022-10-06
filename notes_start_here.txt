@@ -18,3 +18,12 @@ JMP     Jump to segment:address
 INC     Increase
 DEC     Decrease
 MOV     Move bytes from one place to another (Usually between registers)
+
+//Ilegal instructions
+MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
+MOV SI, [SS]                Segment registers may not address memory data
+MOV [SI], [BX]
+MOV CS, SS
+MOV BX, ES:[BX]
+
+the brackets are known as memory data and it indicates that the "contents of memory" and not "contents of a register" is being addressed. Another way to do this is using a segment override prefix (example: MOV CS:[SI], AX     move the contents of AX into a location at an offset (contained in SI) into the CS segment),  if you don't specify CS:[SI] it would simply ASSUME that DS is the segment you want and would move the content into DS:SI. The segment override prefix is a single binary byte (26H). Rather than taking the value inside BX it takes the offset of BX in memory, more or less as I understand it)
