@@ -18,6 +18,7 @@ JMP     Jump to segment:address
 INC     Increase
 DEC     Decrease
 MOV     Move bytes from one place to another (Usually between registers)
+NEG     Multiply by (-1)
 
 //Ilegal instructions
 MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
@@ -32,3 +33,35 @@ move the contents of AX into a location at an offset (contained in SI) into the 
 if you don't specify CS:[SI] it would simply ASSUME that DS is the segment you want and would move the content into DS:SI. 
 The segment override prefix is a single binary byte (26H).
 Rather than taking the value inside BX it takes the offset of BX in memory, more or less as I understand it)
+
+Only BP, BX, SI, and DI may hold an offset for memory data
+
+r8 - 8bit register half
+r16 - 16 bit register
+sr - one of the four segment registers (CS, DS, SS, ES)
+m8 - 8bit memory data
+m16 - 16bit memory data
+i16 - 16bit word of immediate data
+d8 - 8bit displacement (where to jmp, signed or unsigned meaning positive or negative in memory)
+d16 - 16bit displacement
+
+OF - Overflow flag, result of operand too big to fit in the operand it org. occupied
+DF - Direction flag, dictates the direction that activity moves (up or down in memory)
+IF - Interrupt enable flag, is set by the CPU under certain conditions, can be set manually with CLI or STI instruction
+TF - Trap flag, allows execution of one instruction before it calls interrupt routine.
+SF - Sign flag, is set when the result of an operand forces the operand to become negative.
+ZF - Zero flag, result of operation is 0.
+AF - Auxiliary carry flag, not very important, BCD operations (binary coded decimal arithmetics)
+PF - Parity flag, if the set number of bits (1's) in low-order byte result is odd or even. Even = 1, odd = 0)
+CF - Carry flag, If the result of an arithmetic or shift operations "carries out" a bit from the operand, cf is set otherwise cleared.
+
+BYTE PTR          ]
+WORD PTR          ] Can be used with NEG to point at a location if type is specified ex) NEG BYTE PTR [BX]
+
+DB - Define byte  ]
+DW - Define word  ] Usually used with a variable ex)  MyWord   DW
+
+
+
+LINKS:
+https://en.wikipedia.org/wiki/X86_instruction_listings#Original_8086/8088_instructions - ALL 8086 / 8088 instructions
