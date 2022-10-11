@@ -19,6 +19,7 @@ INC     Increase
 DEC     Decrease
 MOV     Move bytes from one place to another (Usually between registers)
 NEG     Multiply by (-1)
+LEA     Load effective address (load offset address into register ex; LEA DX,OffsetStringVariable)
 
 //Ilegal instructions
 MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
@@ -61,7 +62,15 @@ WORD PTR          ] Can be used with NEG to point at a location if type is speci
 DB - Define byte  ]
 DW - Define word  ] Usually used with a variable ex)  MyWord   DW
 
+ASSUME is used to assume what segment is being used for data and code ex) ASSUME DS:DataSegment,CS:CodeSegment
+"$" Ends the mark of a string
+Define a segment using     DataSegment  SEGMENT, to end use DataSegment ENDS
+To store your data segment in a place you first need to load it into a general purpose register, then into the data segment ex) MOV AX,DataSegment;MOV DS,AX
 
+LIFO stack (Last in first out)
+SS points to beginning of stack
+SP points to end of stack
+PUSHF push flag register
 
 LINKS:
 https://en.wikipedia.org/wiki/X86_instruction_listings#Original_8086/8088_instructions - ALL 8086 / 8088 instructions
