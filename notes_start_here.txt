@@ -20,6 +20,7 @@ DEC     Decrease
 MOV     Move bytes from one place to another (Usually between registers)
 NEG     Multiply by (-1)
 LEA     Load effective address (load offset address into register ex; LEA DX,OffsetStringVariable)
+DUP     Duplicate whatever value comes after
 
 //Ilegal instructions
 MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
@@ -62,6 +63,8 @@ WORD PTR          ] Can be used with NEG to point at a location if type is speci
 DB - Define byte  ]
 DW - Define word  ] Usually used with a variable ex)  MyWord   DW
 
+//Definions and general knowledge
+
 ASSUME is used to assume what segment is being used for data and code ex) ASSUME DS:DataSegment,CS:CodeSegment
 "$" Ends the mark of a string
 Define a segment using     DataSegment  SEGMENT, to end use DataSegment ENDS
@@ -71,6 +74,20 @@ LIFO stack (Last in first out)
 SS points to beginning of stack
 SP points to end of stack
 PUSHF push flag register
+PUSH pushes a register. When you push a register SP gets decremented by one word to make space for the register (Copies the contents of the register to SP)
+SP is decremented BEFORE pushing onto the stack, and AFTER removing a word from the stack (POP)
+If the stack is empty the SP is just going to point to real data somewhere in memory
+You can't push or pop BH or BL for example, it has to be a word.
+All memory between SS:0 and SS:SP is considered free
+
+DB 64 DUP ('EIGHTLET') defines 512 bytes for the stack, filled with the letters EIGHTLET in all places. DB works here because it can point to multi byte strings or buffers. Another example. DB 512 DUP (?) reserves 512 bytes of empty characters (space)
+
+//The interrupt vector table 
+Stars at segment 0 and goes up to 256
+They are burned into permanent memory
+
 
 LINKS:
 https://en.wikipedia.org/wiki/X86_instruction_listings#Original_8086/8088_instructions - ALL 8086 / 8088 instructions
+https://en.wikipedia.org/wiki/Interrupt_descriptor_table                               - Regarding interrupt descriptor table
+https://en.wikipedia.org/wiki/Interrupt_vector_table                                   - Regarding interrupt vector table
