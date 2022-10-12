@@ -20,7 +20,8 @@ DEC     Decrease
 MOV     Move bytes from one place to another (Usually between registers)
 NEG     Multiply by (-1)
 LEA     Load effective address (load offset address into register ex; LEA DX,OffsetStringVariable)
-DUP     Duplicate whatever value comes after
+DUP     Duplicate whatever value comes after usually paired with a string or characters
+INT     Interrupt which is used to call DOS services from the vector table
 
 //Ilegal instructions
 MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
@@ -85,6 +86,9 @@ DB 64 DUP ('EIGHTLET') defines 512 bytes for the stack, filled with the letters 
 //The interrupt vector table 
 Stars at segment 0 and goes up to 256
 They are burned into permanent memory
+Bytes 0-3 is considered vector 0, 4-7 vector 1, 8-11 vecotr 2 ; These have service routines during ex bios startup.
+
+
 
 
 LINKS:
