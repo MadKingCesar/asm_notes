@@ -11,6 +11,10 @@ SS        Stack segment (Temporary storage of data and addresses)
 AX   BX    CX     DX    SP             BP            SI              DI
 ACC  BASE  COUNT  DATA  STACKPOINTER   BASEPOINTER   SOURCE INDEX    DESTINATION INDEX
 
+//DOS services
+09 H    ; Print string
+4C H    ; Terminate dos service
+
 AX, BX, CX, DX is split into 2 8bit registers (AH, AL & BH, BL and so on)
 
 //Instructions
@@ -22,6 +26,7 @@ NEG     Multiply by (-1)
 LEA     Load effective address (load offset address into register ex; LEA DX,OffsetStringVariable)
 DUP     Duplicate whatever value comes after usually paired with a string or characters
 INT     Interrupt which is used to call DOS services from the vector table
+IRET    Interrupt return, returns to an address in code (usually after being ran from the dispatcher to continue the code)
 
 //Ilegal instructions
 MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
@@ -87,6 +92,26 @@ DB 64 DUP ('EIGHTLET') defines 512 bytes for the stack, filled with the letters 
 Stars at segment 0 and goes up to 256
 They are burned into permanent memory
 Bytes 0-3 is considered vector 0, 4-7 vector 1, 8-11 vecotr 2 ; These have service routines during ex bios startup.
+
+If you want to use DOS services u can load them into AH
+When DOS calls the dispatcher it also pushes the next instruction to the stack as a means to get back
+
+//Programs
+Define as much space as you may need and space for interrupt services in the stack segment by using a buffert and a directive ex)
+DW, DD, DB or DUP. The following are legal examples:
+mByte DB 042h            HEX Not.
+mDec DB 17               Decimal
+mStr DB "A string","$"   String
+mNum DB 0DH,0AH,'$'      Multiple numbers
+Marked DB 10 DUP ('Eightnum')
+Tablel DB 5 DUP (02H,04H,06H,08H)
+Ex) NewBuff DB 1024 DUP (?)     Reserve 1024 bytes without character
+
+Set up code segment, with a name;  label SEGMENT CODE
+An ASSUME directive             ;  ASSUME CS:<name> DS:<name>
+Main PROC and ENDP
+Start: label                    ; Not the only option for label, but recommended
+Load your data segment into DS  ; Use a subroutine of loading it into a general purpose register, then DS
 
 
 
