@@ -1,0 +1,7 @@
+You need: Desktop development (c++)
+
+1. Make new empty project
+2. press Add > New item > C++ File    and edit the extension to .asm instead of .c++
+3. right click your project and go to build dependencies > MASM (not the .sln but the .exe)
+4. change debugger to x86
+5. use the template in this repo, compile and it should open an empty black window.
