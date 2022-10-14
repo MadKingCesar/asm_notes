@@ -113,8 +113,8 @@ Main PROC and ENDP
 Start: label                    ; Not the only option for label, but recommended
 Load your data segment into DS  ; Use a subroutine of loading it into a general purpose register, then DS
 
-
-
+//ETC
+MOV AL,0    ; ERROR HANDLER
 
 LINKS:
 https://en.wikipedia.org/wiki/X86_instruction_listings#Original_8086/8088_instructions - ALL 8086 / 8088 instructions
