@@ -2,5 +2,6 @@ real4       ]
 real8       ]
 real10      ] IEEE754 double precision float. 4 = 32 bits wide.
 
+Zmmword     ]
 Xmmword     ]
 Ymmword     ] used for SIMD packed data
