@@ -27,6 +27,8 @@ LEA     Load effective address (load offset address into register ex; LEA DX,Off
 DUP     Duplicate whatever value comes after usually paired with a string or characters
 INT     Interrupt which is used to call DOS services from the vector table
 IRET    Interrupt return, returns to an address in code (usually after being ran from the dispatcher to continue the code)
+call    Push the next instruction onto the stack
+ret     RETurn, pops the address of the top of stack and jumps back to IP, ret is commonly used after the call instruction
 
 //Ilegal instructions
 MOV IMDATA (ex: 17), BX     Only the source operand may be immediate data
