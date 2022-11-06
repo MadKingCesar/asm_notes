@@ -90,6 +90,9 @@ All memory between SS:0 and SS:SP is considered free
 
 DB 64 DUP ('EIGHTLET') defines 512 bytes for the stack, filled with the letters EIGHTLET in all places. DB works here because it can point to multi byte strings or buffers. Another example. DB 512 DUP (?) reserves 512 bytes of empty characters (space)
 
+ROM BIOS goes deeper than DOS and stands for read only memory BIOS; its memory has their content burnt into the silicon chip, they dont vanish when the computer is turned off
+BIOS, Basic input/output system, contains fundamental routines for dealing with input and output. bios uses system interrupts
+
 //The interrupt vector table 
 Stars at segment 0 and goes up to 256
 They are burned into permanent memory
@@ -115,8 +118,16 @@ Main PROC and ENDP
 Start: label                    ; Not the only option for label, but recommended
 Load your data segment into DS  ; Use a subroutine of loading it into a general purpose register, then DS
 
+more about calls & ret :
+They have to be placed inside a proc, it is also possible to use calls within calls
+using more than one RET instruction requires the use of JMP
+ 
+
 //ETC
 MOV AL,0    ; ERROR HANDLER
+
+
+
 
 LINKS:
 https://en.wikipedia.org/wiki/X86_instruction_listings#Original_8086/8088_instructions - ALL 8086 / 8088 instructions
